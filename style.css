@@ -1,0 +1,16 @@
+body {
+  background-color: coral;
+  color: white;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding-top: 20vh;
+  /* height: 100vh; */
+  overflow: hidden;
+}
+
+#date {
+  width: 250px;
+  padding: 15px auto;
+  margin: 20px auto;
+}
