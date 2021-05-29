@@ -6,6 +6,7 @@ const button = document.getElementById('btn')
 let nextBirthday
 // let nextBirthday = new Date('07/17/2021')  // mm/dd/yyyy
 
+timeLeft.innerHTML = "please enter full date of next Birthday e.g., mm/dd/yyyy"
 
 const second = 1000
 const minute = second * 60
@@ -72,4 +73,5 @@ function changeDate() {
 
 function btnDisplay() {
     button.style.display = 'initial'
+    timeLeft.innerHTML = ''
 }
