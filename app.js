@@ -53,15 +53,16 @@ function changeColor() {
 button.style.display = 'none'
 function changeDate() {
     // console.log(newDate.value)
+    const dateValue = document.getElementById('date').value
+    // console.log(dateValue.length)
     nextBirthday = new Date(newDate.value)
     if (newDate.value == '') {
-        timeLeft.innerHTML = "please enter Birthday"
+        timeLeft.innerHTML = "Enter next Birthday e.g., mm/dd/yyyy"
 
-    } else if (newDate.value <= new Date()) {
-        timeLeft.innerHTML = "please enter full date of Birthday"
+    } else if (dateValue.length < 10) {
+        timeLeft.innerHTML = "please enter full date of next Birthday e.g., mm/dd/yyyy"
     } else {
         userForm.style.display = 'none'
-
         timerId = setInterval(countDown, second)   // call every second
 
         setInterval(changeColor, second)
