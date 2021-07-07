@@ -11,12 +11,18 @@
     </head>
 
     <body>
+        <h1>Birthday Countdown</h1>
         <div id="form">
+            <input type="text" id="name" placeholder="Enter your name" autocomplete="off" autofocus>
             <input type="text" id="date" placeholder="Enter next Birthday e.g., mm/dd/yyyy" oninput="btnDisplay()"
                 autofocus>
             <input type="button" value="Submit" onclick="changeDate()" id="btn">
         </div>
-        <h1 id="time-left"></h1>
+        <div id="content">
+        </div>
+        <h2 id="time-left"></h2>
+
+        <h3>Made by <a href="http://github.com/flyingsonu122" target="_blank" rel="noopener noreferrer">Sonu </a></h3>
 
         <script src="./app.js"></script>
     </body>
