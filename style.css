@@ -61,11 +61,12 @@ a:hover {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background: transparent;
-  background: #ffc400;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid yellow;
+  /* background: #ffc400;
   box-shadow: inset -50px -50px 94px #cc9d00,
       inset 50px 50px 94px #ffeb00;
-  filter: contrast(300%);
+  filter: contrast(300%); */
   animation: animate 5s linear infinite;
 }
 .bubble2 {
@@ -74,12 +75,13 @@ a:hover {
   width: 50px;
   right: 30%;
   top: 70%;
-  background: transparent;
-  background: #1ebb09;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid forestgreen;
+  /* background: #1ebb09;
   box-shadow: inset -50px -50px 94px #189607,
       inset 50px 50px 94px #24e00b;
-  filter: contrast(200%);
+  filter: contrast(200%); */
   animation: animate 5s linear infinite;
   animation-delay: -2s;
 }
@@ -90,13 +92,13 @@ a:hover {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background: transparent;
   border-radius: 50%;
-  background: #7f07a3;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid purple;
+  /* background: #7f07a3;
   box-shadow: inset -50px -50px 85px #670684,
       inset 50px 50px 85px #9708c2;
-  filter: brightness(900%);
-  filter: contrast(300%);
+  filter: contrast(300%); */
   animation: animate 5s linear infinite;
   animation-delay: -1s;
 }
