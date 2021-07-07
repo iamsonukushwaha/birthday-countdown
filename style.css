@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   background-color: rgb(231, 174, 153);
   background-image: url("./bg.jpg");
@@ -48,4 +53,81 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.bubble1{
+  position: absolute;
+  right: 90%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: transparent;
+  background: #ffc400;
+  box-shadow: inset -50px -50px 94px #cc9d00,
+               inset 50px 50px 94px #ffeb00;
+  filter: contrast(300%);
+  animation: animate 5s linear infinite;
+}
+.bubble1 {
+    position: absolute;
+    right: 90%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: transparent;
+    background: #ffc400;
+    box-shadow: inset -50px -50px 94px #cc9d00,
+        inset 50px 50px 94px #ffeb00;
+    filter: contrast(300%);
+    animation: animate 5s linear infinite;
+}
+.bubble2 {
+    height: 50px;
+    width: 50px;
+    background: transparent;
+    background: #1ebb09;
+    border-radius: 50%;
+    box-shadow: inset -50px -50px 94px #189607,
+        inset 50px 50px 94px #24e00b;
+    filter: contrast(200%);
+    animation: animate 5s linear infinite;
+    animation-delay: -2s;
+}
+.bubble3 {
+    position: absolute;
+    right: 10%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border-radius: 50%;
+    background: #7f07a3;
+    box-shadow: inset -50px -50px 85px #670684,
+        inset 50px 50px 85px #9708c2;
+    filter: brightness(900%);
+    filter: contrast(300%);
+    animation: animate 5s linear infinite;
+    animation-delay: -1s;
+}
+@keyframes animate {
+    0% {
+        height: 10px;
+        width: 10px;
+    }
+    25% {
+        height: 25px;
+        width: 25px;
+    }
+    50% {
+        height: 50px;
+        width: 50px;
+    }
+    75% {
+        height: 25px;
+        width: 25px;
+    }
+    100% {
+        height: 10px;
+        width: 10px;
+    }
 }
