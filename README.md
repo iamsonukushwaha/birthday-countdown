@@ -2,7 +2,7 @@
 
 **See live demo on [flyingsonu122.github.io/birthday-countdown](https://flyingsonu122.github.io/birthday-countdown)**
 
-see my next [Birthday Countdown](https://flyingsonu122.github.io/birthday-countdown/v2/index.html)
+see Sonu's next [Birthday Countdown](https://flyingsonu122.github.io/birthday-countdown/v2/index.html)
 
 <br><br><br>
 
