@@ -4,7 +4,8 @@
 
 see Sonu's next [Birthday Countdown](https://flyingsonu122.github.io/birthday-countdown/v2/index.html)
 
-<br><br><br>
+Download as [Android App](https://github.com/flyingsonu122/resources/releases/download/v1.0/birthday-countdown.apk)
+
 
 
 **MIT &copy; [Sonu kumar kushwaha](https://github.com/flyingsonu122)**
