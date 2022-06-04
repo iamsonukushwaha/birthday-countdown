@@ -29,7 +29,7 @@ Thank you for being here! You can find my other projects **[here](https://github
 	<a href="https://www.instagram.com/flyingsonu736/"><img src="https://img.shields.io/badge/Instagram--_.svg?style=social&logo=instagram" alt="Instagram"></a>
 	<a href="https://medium.com/@sonukumarkushwaha"><img src="https://img.shields.io/badge/Medium--_.svg?style=social&logo=medium" alt="Medium"></a>
 	<a href="https://www.youtube.com/channel/UCugIYeIc-HzCp-SZxRwuQbA"><img src="https://img.shields.io/youtube/channel/subscribers/UCugIYeIc-HzCp-SZxRwuQbA?label=YouTube&style=social&logo=YouTube" alt="YouTube"></a>
-	<a href="https://twitter.com/sonukumarkush12"><img src="https://img.shields.io/twitter/follow/sonukumarkush12?label=Follow&style=social" alt="Twitter"></a>
+	<a href="https://twitter.com/iamsonukushwaha"><img src="https://img.shields.io/twitter/follow/iamsonukushwaha?label=Follow&style=social" alt="Twitter"></a>
 	
 	
 </p>
