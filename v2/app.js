@@ -1,7 +1,7 @@
 const timeLeft = document.getElementById('time-left')
 const newDate = document.getElementById('date')
 
-let nextBirthday = new Date('07/17/2021')  // mm/dd/yyyy
+let nextBirthday = new Date('07/17/2023')  // mm/dd/yyyy
 
 
 const second = 1000
