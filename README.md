@@ -6,11 +6,13 @@
 
 **See live demo on [flyingsonu122.github.io/birthday-countdown](https://flyingsonu122.github.io/birthday-countdown)**
 
-see Sonu's next [Birthday Countdown](https://flyingsonu122.github.io/birthday-countdown/v2/index.html)
+See Sonu's next [Birthday Countdown](https://flyingsonu122.github.io/birthday-countdown/v2/index.html)
+
+<!--
 
 Download as [Android App](https://github.com/flyingsonu122/resources/releases/download/v1.0/birthday-countdown.apk)
 
-
+-->
 
 **MIT &copy; [Sonu kumar kushwaha](https://github.com/flyingsonu122)**
 
