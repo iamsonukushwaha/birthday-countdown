@@ -4,8 +4,13 @@ const content = document.getElementById('content')
 const userForm = document.getElementById('form')
 const button = document.getElementById('btn')
 
+window.onload = function () {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("date").setAttribute("min", today);
+};
+
 let nextBirthday
-// let nextBirthday = new Date('07/17/2021')  // mm/dd/yyyy
+// let nextBirthday = new Date('07/17/2023')  // mm/dd/yyyy
 
 timeLeft.innerHTML = `please enter full date of <span id="next">next</span> Birthday e.g., mm/dd/yyyy`;
 
