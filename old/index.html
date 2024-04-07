@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Birthday Countdown</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+
+    <body>
+        <h1>Birthday Countdown</h1>
+        <div id="form">
+            <input type="text" id="name" placeholder="Enter your name" autocomplete="off" autofocus>
+            <input type="date" id="date" placeholder="Enter next Birthday e.g., mm/dd/yyyy" oninput="btnDisplay()"
+                autofocus>
+            <input type="button" value="Submit" onclick="changeDate()" id="btn">
+        </div>
+        <div id="content">
+        </div>
+        <h2 id="time-left"></h2>
+
+        <h3>Built by <a href="https://singlebucks.blogspot.com" target="_blank" rel="noopener noreferrer">Sonu Kushwaha</a></h3>
+
+        <script src="./app.js"></script>
+        
+</body>
+
+</html>
