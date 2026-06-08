@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonu Work Anniversary Counter</title>
+  <style>
+    :root {
+      --bg-1: #fff7ed;
+      --bg-2: #ffedd5;
+      --card: #ffffffcc;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #ea580c;
+      --accent-2: #0f766e;
+      --ring: #fdba74;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Trebuchet MS", Tahoma, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, #fffbeb 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, #fde68a 0%, transparent 28%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: min(920px, 100%);
+      display: grid;
+      gap: 18px;
+      animation: rise 700ms ease-out;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      text-wrap: balance;
+    }
+
+    .sub {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px #00000014;
+      backdrop-filter: blur(4px);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pill {
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #fed7aa;
+    }
+
+    .value {
+      display: block;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.6vw, 2rem);
+      color: var(--accent);
+    }
+
+    .label {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-box {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .count-item {
+      border-radius: 14px;
+      padding: 16px 10px;
+      text-align: center;
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+    }
+
+    .count-item .value {
+      color: var(--accent-2);
+    }
+
+    .foot {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .anniv-date {
+      display: inline-block;
+      margin-left: 6px;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 14px;
+      }
+
+      .wrap {
+        gap: 12px;
+      }
+
+      .card {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .grid,
+      .countdown-box {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .pill,
+      .count-item {
+        padding: 12px 8px;
+      }
+
+      .label {
+        font-size: 0.84rem;
+      }
+
+      .foot {
+        margin-top: 8px;
+        font-size: 0.88rem;
+        line-height: 1.35;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .title {
+        font-size: 1.55rem;
+      }
+
+      .sub {
+        font-size: 0.92rem;
+      }
+
+      .card h2 {
+        font-size: 1.05rem;
+      }
+
+      .grid,
+      .countdown-box {
+        grid-template-columns: 1fr;
+      }
+
+      .value {
+        font-size: 1.55rem;
+      }
+
+      .anniv-date {
+        margin-left: 0;
+        display: block;
+        margin-top: 4px;
+      }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="card">
+      <h1 class="title">Sonu Wipro Work Anniversary Counter</h1>
+      <p class="sub">Joined on 11 April 2022</p>
+    </header>
+
+    <section class="card" aria-live="polite">
+      <h2>Time Passed Since Joining</h2>
+      <div class="grid">
+        <div class="pill">
+          <span id="years" class="value">0</span>
+          <span class="label">Years</span>
+        </div>
+        <div class="pill">
+          <span id="months" class="value">0</span>
+          <span class="label">Months</span>
+        </div>
+        <div class="pill">
+          <span id="days" class="value">0</span>
+          <span class="label">Days</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <h2>Next Anniversary Countdown</h2>
+      <div class="countdown-box">
+        <div class="count-item">
+          <span id="cd-days" class="value">0</span>
+          <span class="label">Days</span>
+        </div>
+        <div class="count-item">
+          <span id="cd-hours" class="value">0</span>
+          <span class="label">Hours</span>
+        </div>
+        <div class="count-item">
+          <span id="cd-minutes" class="value">0</span>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="count-item">
+          <span id="cd-seconds" class="value">0</span>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+      <p class="foot">
+        Next anniversary date:
+        <span id="next-date" class="anniv-date">-</span>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const joinDate = new Date(2022, 3, 11); // 11 April 2022
+
+    function daysInMonth(year, monthIndex) {
+      return new Date(year, monthIndex + 1, 0).getDate();
+    }
+
+    function addMonthsKeepingDate(baseDate, monthsToAdd) {
+      const year = baseDate.getFullYear();
+      const month = baseDate.getMonth();
+      const day = baseDate.getDate();
+      const targetMonthIndex = month + monthsToAdd;
+      const targetYear = year + Math.floor(targetMonthIndex / 12);
+      const normalizedMonth = ((targetMonthIndex % 12) + 12) % 12;
+      const cappedDay = Math.min(day, daysInMonth(targetYear, normalizedMonth));
+      return new Date(targetYear, normalizedMonth, cappedDay);
+    }
+
+    function diffYearsMonthsDays(startDate, endDate) {
+      let years = endDate.getFullYear() - startDate.getFullYear();
+      let anchor = new Date(startDate.getFullYear() + years, startDate.getMonth(), startDate.getDate());
+
+      if (anchor > endDate) {
+        years -= 1;
+        anchor = new Date(startDate.getFullYear() + years, startDate.getMonth(), startDate.getDate());
+      }
+
+      let months = 0;
+      while (months < 12) {
+        const nextAnchor = addMonthsKeepingDate(anchor, 1);
+        if (nextAnchor <= endDate) {
+          months += 1;
+          anchor = nextAnchor;
+        } else {
+          break;
+        }
+      }
+
+      const msPerDay = 24 * 60 * 60 * 1000;
+      const days = Math.floor((endDate - anchor) / msPerDay);
+
+      return { years, months, days };
+    }
+
+    function getUpcomingAnniversary(now) {
+      let target = new Date(now.getFullYear(), joinDate.getMonth(), joinDate.getDate(), 0, 0, 0, 0);
+      if (now >= target) {
+        target = new Date(now.getFullYear() + 1, joinDate.getMonth(), joinDate.getDate(), 0, 0, 0, 0);
+      }
+      return target;
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString(undefined, {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    function updateCounter() {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const elapsed = diffYearsMonthsDays(joinDate, today);
+
+      document.getElementById("years").textContent = String(elapsed.years);
+      document.getElementById("months").textContent = String(elapsed.months);
+      document.getElementById("days").textContent = String(elapsed.days);
+
+      const target = getUpcomingAnniversary(now);
+      document.getElementById("next-date").textContent = formatDate(target);
+
+      const distance = target.getTime() - now.getTime();
+      const totalSeconds = Math.max(0, Math.floor(distance / 1000));
+      const cdDays = Math.floor(totalSeconds / 86400);
+      const cdHours = Math.floor((totalSeconds % 86400) / 3600);
+      const cdMinutes = Math.floor((totalSeconds % 3600) / 60);
+      const cdSeconds = totalSeconds % 60;
+
+      document.getElementById("cd-days").textContent = String(cdDays);
+      document.getElementById("cd-hours").textContent = String(cdHours).padStart(2, "0");
+      document.getElementById("cd-minutes").textContent = String(cdMinutes).padStart(2, "0");
+      document.getElementById("cd-seconds").textContent = String(cdSeconds).padStart(2, "0");
+    }
+
+    function startTicker() {
+      updateCounter();
+
+      // Keep updates aligned to wall-clock seconds to avoid drift.
+      const msToNextSecond = 1000 - (Date.now() % 1000);
+      setTimeout(startTicker, msToNextSecond);
+    }
+
+    startTicker();
+  </script>
+</body>
+</html>
