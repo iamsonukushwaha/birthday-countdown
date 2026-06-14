@@ -4,28 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Countdown</title>
+    <title>Sonu Birthday Countdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body>
-    <div class="container">
-        <h1>Birthday Countdown</h1>
-        <p id="personName">
-            Sonu Kumar Kushwaha
-        </p>
-        <p id="birthMonth" style="display: none;">
-            7
-        </p>
-        <p id="birthDay" style="display: none;">
-            17
-        </p>
-        <br><br>
+<body class="sonu-theme">
+    <div class="container viral-card">
+        <p class="kicker">Birthday Countdown</p>
+        <h1>Counting Down to the Big Day</h1>
+        <p id="personName" class="name-hero">Sonu Kumar Kushwaha</p>
+        <p id="birthMonth" style="display: none;">7</p>
+        <p id="birthDay" style="display: none;">17</p>
 
-        <div id="result"></div>
+        <div id="countdownGrid" class="countdown-grid" aria-live="polite"></div>
+        <div id="result" class="result"></div>
+
+        <div class="action-row">
+            <button id="copyLinkButton" type="button">Copy Link</button>
+            <button id="shareLinkButton" type="button">Share</button>
+        </div>
     </div>
-    <h3>Built by <a href="https://singlebucks.blogspot.com" target="_blank" rel="noopener noreferrer">Sonu Kushwaha</a>
-    </h3>
+
+    <h3>Built by <a href="https://singlebucks.blogspot.com" target="_blank" rel="noopener noreferrer">Sonu Kushwaha</a></h3>
 
 
     <script src="../other.js"></script>

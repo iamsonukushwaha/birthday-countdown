@@ -2,99 +2,134 @@ function generateCountdownLink() {
     const personName = document.getElementById('personName').value.trim();
     const birthMonth = parseInt(document.getElementById('birthMonth').value, 10);
     const birthDay = parseInt(document.getElementById('birthDay').value, 10);
+    const resultElement = document.getElementById('result');
 
-    // Check if name, month, and day are valid
-    if (!personName || isNaN(birthMonth) || isNaN(birthDay) || birthMonth < 1 || birthMonth > 12 || birthDay < 1 || birthDay > 31) {
-        alert('Please enter a valid name, month (1-12), and day (1-31).');
+    if (!isValidBirthday(personName, birthMonth, birthDay)) {
+        resultElement.textContent = 'Please enter a valid name, month, and day.';
         return;
     }
 
-    // Hide the form and buttons
     document.getElementById('formContainer').style.display = 'none';
-    document.getElementById('generateButton').style.display = 'none';
 
-    // Encode the name to make it URL-safe
     const encodedName = encodeURIComponent(personName);
-
-    // Create the URL with query parameters
     const url = `${window.location.origin}${window.location.pathname}?name=${encodedName}&month=${birthMonth}&day=${birthDay}`;
 
-    // Display the URL to the user
-    const resultElement = document.getElementById('result');
-    resultElement.innerHTML = `Share this link for the countdown: <a href="${url}" target="_blank">${url}</a>`;
+    resultElement.innerHTML = `Your countdown link is ready: <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
 
-    // Show the Copy and Share buttons
     document.getElementById('copyButton').style.display = 'inline-block';
     document.getElementById('shareButton').style.display = 'inline-block';
 
-    // Store the URL for copying and sharing
     window.generatedUrl = url;
 
-    // Calculate and display the countdown
     calculateCountdown(personName, birthMonth, birthDay);
 }
 
 function copyToClipboard() {
-    // Copy the generated URL to the clipboard
-    const textarea = document.createElement('textarea');
-    textarea.value = window.generatedUrl;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    alert('URL copied to clipboard!');
+    const textToCopy = window.generatedUrl || window.location.href;
+    const resultElement = document.getElementById('result');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(function () {
+            resultElement.textContent = 'URL copied to clipboard.';
+        }).catch(function () {
+            fallbackCopy(textToCopy, resultElement);
+        });
+        return;
+    }
+
+    fallbackCopy(textToCopy, resultElement);
 }
 
 function shareLink() {
-    // Check if the Web Share API is supported
+    const resultElement = document.getElementById('result');
+
     if (navigator.share) {
         navigator.share({
             title: 'Birthday Countdown',
             text: 'Check out this birthday countdown!',
-            url: window.generatedUrl
+            url: window.generatedUrl || window.location.href
         }).then(() => {
-            console.log('Thanks for sharing!');
+            resultElement.textContent = 'Shared successfully.';
         }).catch((error) => {
-            console.error('Error sharing:', error);
+            if (error && error.name !== 'AbortError') {
+                resultElement.textContent = 'Sharing failed. Try copying the URL.';
+            }
         });
     } else {
-        alert('Sharing is not supported on this browser. You can copy the URL instead.');
+        resultElement.textContent = 'Sharing is not supported on this browser. Copy the URL instead.';
     }
 }
 
 function calculateCountdown(personName, birthMonth, birthDay) {
-    const today = new Date();
-    const birthdate = new Date(today.getFullYear(), birthMonth - 1, birthDay);
+    const countdownGrid = document.getElementById('countdownGrid');
+    const resultElement = document.getElementById('result');
 
-    if (birthdate.getDate() === today.getDate() && birthdate.getMonth() === today.getMonth()) {
-        const resultElement = document.getElementById('result');
-        resultElement.innerHTML += `<p>Happy Birthday ${personName}! 🎉🎂</p>`;
-        return;
+    if (window.countdownTimerId) {
+        clearInterval(window.countdownTimerId);
+        window.countdownTimerId = null;
     }
 
-    if (birthdate < today) {
-        birthdate.setFullYear(today.getFullYear() + 1);
-    }
-
-    setInterval(function () {
+    function getNextBirthday() {
         const now = new Date();
-        const timeDifference = birthdate.getTime() - now.getTime();
+        const target = new Date(now.getFullYear(), birthMonth - 1, birthDay);
+        if (target < now) {
+            target.setFullYear(now.getFullYear() + 1);
+        }
+        return target;
+    }
 
-        let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+    function updateCountdown() {
+        const target = getNextBirthday();
+        const now = new Date();
 
-        const resultElement = document.getElementById('result');
+        if (target.getDate() === now.getDate() && target.getMonth() === now.getMonth() && target.getFullYear() === now.getFullYear()) {
+            countdownGrid.innerHTML = '';
+            resultElement.innerHTML = `Happy Birthday ${personName}! 🎉🎂`;
+            clearInterval(window.countdownTimerId);
+            window.countdownTimerId = null;
+            return;
+        }
 
-        const red = Math.floor(Math.random() * 256);
-        const green = Math.floor(Math.random() * 256);
-        const blue = Math.floor(Math.random() * 256);
+        const timeDifference = target.getTime() - now.getTime();
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-        resultElement.style.color = `rgb(${red}, ${green}, ${blue})`;
+        countdownGrid.innerHTML = `
+            <div class="time-box"><span class="time-value">${days}</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span class="time-value">${hours}</span><span class="time-label">Hours</span></div>
+            <div class="time-box"><span class="time-value">${minutes}</span><span class="time-label">Minutes</span></div>
+            <div class="time-box"><span class="time-value">${seconds}</span><span class="time-label">Seconds</span></div>
+        `;
+        resultElement.textContent = `${personName}'s next birthday is in ${days}d ${hours}h ${minutes}m ${seconds}s.`;
+    }
 
-        resultElement.innerHTML = `${personName}'s next birthday is in ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
-    }, 1000);
+    updateCountdown();
+    window.countdownTimerId = setInterval(updateCountdown, 1000);
+}
+
+function isValidBirthday(personName, birthMonth, birthDay) {
+    if (!personName || isNaN(birthMonth) || isNaN(birthDay) || birthMonth < 1 || birthMonth > 12 || birthDay < 1) {
+        return false;
+    }
+
+    const maxDay = new Date(2024, birthMonth, 0).getDate();
+    return birthDay <= maxDay;
+}
+
+function fallbackCopy(text, resultElement) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        resultElement.textContent = 'URL copied to clipboard.';
+    } catch (error) {
+        resultElement.textContent = 'Unable to copy URL on this browser.';
+    }
+    document.body.removeChild(textarea);
 }
 
 window.onload = function() {
@@ -103,14 +138,11 @@ window.onload = function() {
     const birthMonth = parseInt(urlParams.get('month'), 10);
     const birthDay = parseInt(urlParams.get('day'), 10);
 
-    if (personName && !isNaN(birthMonth) && !isNaN(birthDay)) {
-        // Hide the form and buttons if parameters are present
+    if (isValidBirthday(personName, birthMonth, birthDay)) {
         document.getElementById('formContainer').style.display = 'none';
-        document.getElementById('generateButton').style.display = 'none';
-        document.getElementById('copyButton').style.display = 'none';
-        document.getElementById('shareButton').style.display = 'none';
-
-        // Display the countdown
+        document.getElementById('copyButton').style.display = 'inline-block';
+        document.getElementById('shareButton').style.display = 'inline-block';
+        window.generatedUrl = window.location.href;
         calculateCountdown(personName, birthMonth, birthDay);
     }
 };
